@@ -1,0 +1,5 @@
+{
+  "name": "AI Resume Tailor",
+  "description": "A dynamic, AI-powered Resume Tailoring web application using React, Tailwind CSS, and Google Gemini API.",
+  "requestFramePermissions": []
+}
