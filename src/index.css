@@ -1,1 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
+
+@theme {
+    --color-primary: #1e293b;
+    --color-primary-hover: #0f172a;
+    --color-secondary: #0f172a;
+    --color-accent: #10b981;
+    --color-accent-hover: #059669;
+    --color-surface: #ffffff;
+    --color-surface-muted: #f1f5f9;
+    --color-background: #f8fafc;
+
+    --font-display: 'Manrope', sans-serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+    body {
+        background-color: var(--color-background);
+        color: var(--color-secondary);
+    }
+}
+
+@layer components {
+    .btn-primary {
+        @apply bg-primary hover:bg-primary-hover text-surface transition-colors duration-200 py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 shadow-sm;
+    }
+
+    .glass-card {
+        @apply bg-surface/80 backdrop-blur-md border border-slate-200 shadow-sm rounded-xl;
+    }
+}

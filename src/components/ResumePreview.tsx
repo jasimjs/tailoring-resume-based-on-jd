@@ -4,9 +4,10 @@ import { Phone, Mail, MapPin, Globe, Linkedin, Github } from 'lucide-react';
 
 interface ResumePreviewProps {
   data: ResumeData;
+  zoom?: number;
 }
 
-const ResumePreview = forwardRef<HTMLDivElement, ResumePreviewProps>(({ data }, ref) => {
+const ResumePreview = forwardRef<HTMLDivElement, ResumePreviewProps>(({ data, zoom = 1 }, ref) => {
   // Split work experience: first 2 on page 1, rest on page 2
   const page1Work = data.workExperience.slice(0, 2);
   const page2Work = data.workExperience.slice(2);
@@ -14,7 +15,10 @@ const ResumePreview = forwardRef<HTMLDivElement, ResumePreviewProps>(({ data }, 
   return (
     <div ref={ref} className="w-full flex-1 flex flex-col items-center">
       {/* Container applies scaling to fit smaller screens, keeping exact A4 ratio inner elements */}
-      <div className="w-full max-w-[210mm] flex flex-col gap-8 print:gap-0 items-center origin-top transform scale-[0.4] sm:scale-[0.5] md:scale-[0.7] lg:scale-[0.8] xl:scale-100 print:scale-100 transition-transform">
+      <div
+        className={`w-full max-w-[210mm] flex flex-col gap-8 print:gap-0 items-center origin-top transform transition-transform ${zoom === 1 ? 'scale-[0.4] sm:scale-[0.5] md:scale-[0.7] lg:scale-[0.8] xl:scale-100 print:scale-100' : ''}`}
+        style={zoom !== 1 ? { transform: `scale(${zoom})`, marginBottom: `${(zoom - 1) * 100}%` } : {}}
+      >
         {/* PAGE 1 */}
         <div className="w-[210mm] h-[297mm] bg-[#ffffff] text-[#0f172a] flex overflow-hidden text-[12.5px] shrink-0 shadow-lg print:shadow-none print:break-after-page" style={{ fontFamily: "'Inter', sans-serif" }}>
           {/* Sidebar Page 1 */}

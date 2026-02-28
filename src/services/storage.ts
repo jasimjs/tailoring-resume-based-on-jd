@@ -42,6 +42,15 @@ export const storageService = {
         }
     },
 
+    updateGeneration: (id: string, newResumeData: ResumeData): void => {
+        const generations = storageService.getGenerations();
+        const existingIndex = generations.findIndex(g => g.id === id);
+        if (existingIndex > -1) {
+            generations[existingIndex].resumeData = newResumeData;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(generations));
+        }
+    },
+
     deleteGeneration: (id: string): void => {
         const generations = storageService.getGenerations();
         const filtered = generations.filter(g => g.id !== id);
